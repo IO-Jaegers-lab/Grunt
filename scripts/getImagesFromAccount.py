@@ -13,6 +13,7 @@ import time
 
 start = 'https://commons.wikimedia.org/w/index.php?title=Special:ListFiles&limit=250&user=Askeuhd'
 
+
 url_to_traverse = start
 
 continueTraversing = True

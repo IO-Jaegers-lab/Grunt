@@ -13,10 +13,13 @@ from selenium.webdriver.common.by import By
 import time
 import json
 
+debugging = False
 counter = 0
 
 driverOptions = ChromeOptions()
-#driverOptions.add_argument("")
+
+if not debugging:
+    driverOptions.add_argument("--headless")
 
 Driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=driverOptions)
 
