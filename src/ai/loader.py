@@ -4,8 +4,7 @@ import cv2
 import numpy \
     as np
 
-import variables
-
+from src.ai.configuration import variables
 
 # Globals
 training_set = []

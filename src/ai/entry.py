@@ -5,7 +5,9 @@ from keras.preprocessing.image \
 
 import loader
 import execute
-import variables
+
+from src.ai.configuration \
+    import variables
 
 wandb.init(
     project="test-project",

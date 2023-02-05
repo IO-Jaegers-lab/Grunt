@@ -11,7 +11,7 @@ from tensorflow.python.keras.models \
     Model
 
 import loader
-import variables
+from src.ai.configuration import variables
 
 
 def run():

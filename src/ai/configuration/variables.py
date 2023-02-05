@@ -6,6 +6,18 @@ epoch = 10
 size_of_categories = 3
 batch_size = 32
 
+datasetPath = None
+
+
+def get_dataset() -> str|None:
+    global datasetPath
+    return datasetPath
+
+
+def set_dataset(value: str) -> None:
+    global datasetPath
+    datasetPath = value
+
 
 def get_epoch() -> int:
     global epoch
