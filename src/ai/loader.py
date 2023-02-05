@@ -4,6 +4,10 @@ import cv2
 import numpy \
     as np
 
+import variables
+
+
+# Globals
 training_set = []
 test_set = []
 validation_set = []
@@ -17,6 +21,7 @@ normalised_test_set = None
 normalised_validation_set = None
 
 
+# Static Accessors
 def get_y_training_set():
     global y_training_set
     return y_training_set
@@ -46,7 +51,7 @@ def set_y_validation_set(value):
     global y_validation_set
     y_validation_set = value
 
-# Static Accessors
+
 def get_normalised_training_set():
     global normalised_training_set
     return normalised_training_set
@@ -117,7 +122,13 @@ def load_training_set(path: str):
             image_path = subpath + "/" + img
 
             image_array = cv2.imread(image_path)
-            image_array = cv2.resize(image_array, (224, 224))
+            image_array = cv2.resize(
+                image_array,
+                (
+                    variables.get_image_size_x(),
+                    variables.get_image_size_y()
+                )
+            )
 
             set.append(image_array)
 
@@ -131,7 +142,13 @@ def load_test_set(path: str):
         for img in os.listdir(sub_path):
             image_path = sub_path + "/" + img
             img_array = cv2.imread(image_path)
-            img_array = cv2.resize(img_array, (224, 224))
+            img_array = cv2.resize(
+                img_array,
+                (
+                    variables.get_image_size_x(),
+                    variables.get_image_size_y()
+                )
+            )
 
             set.append(img_array)
 
@@ -139,14 +156,19 @@ def load_test_set(path: str):
 def load_validation_set(path: str):
     set = get_validation_set()
 
-
     for folder in os.listdir(path):
         sub_path = path + "/" + folder
 
         for img in os.listdir(sub_path):
             image_path = sub_path + "/" + img
             img_array = cv2.imread(image_path)
-            img_array = cv2.resize(img_array, (224, 224))
+            img_array = cv2.resize(
+                img_array,
+                (
+                    variables.get_image_size_x(),
+                    variables.get_image_size_y()
+                )
+            )
 
             set.append(img_array)
 
@@ -164,7 +186,13 @@ def convert():
 
 
 def debug():
-    print(len(get_train_set()))
-    print(len(get_test_set()))
-    print(len(get_validation_set()))
+    print(
+        len(get_train_set())
+    )
+    print(
+        len(get_test_set())
+    )
+    print(
+        len(get_validation_set())
+    )
 

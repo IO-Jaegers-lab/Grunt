@@ -1,8 +1,11 @@
 import wandb
-from keras.preprocessing.image import ImageDataGenerator
+
+from keras.preprocessing.image \
+    import ImageDataGenerator
+
 import loader
 import execute
-
+import variables
 
 wandb.init(
     project="test-project",
@@ -22,9 +25,18 @@ def main() -> None:
         test_path, \
         validation_path
 
-    loader.load_training_set(train_path)
-    loader.load_test_set(test_path)
-    loader.load_validation_set(validation_path)
+    loader.load_training_set(
+        train_path
+    )
+
+    loader.load_test_set(
+        test_path
+    )
+
+    loader.load_validation_set(
+        validation_path
+    )
+
     loader.debug()
 
     # Normalise Set
@@ -36,8 +48,11 @@ def main() -> None:
 
     training_set = train_datagen.flow_from_directory(
         train_path,
-        target_size=(224, 224),
-        batch_size=32,
+        target_size=(
+            variables.get_image_size_x(),
+            variables.get_image_size_y()
+        ),
+        batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )
 
@@ -49,8 +64,11 @@ def main() -> None:
     )
     test_set = test_datagen.flow_from_directory(
         test_path,
-        target_size=(224, 224),
-        batch_size=32,
+        target_size=(
+            variables.get_image_size_x(),
+            variables.get_image_size_y()
+        ),
+        batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )
 
@@ -60,23 +78,33 @@ def main() -> None:
     validation_datagen = ImageDataGenerator(
         rescale=1./255
     )
+
     validation_set = validation_datagen.flow_from_directory(
         validation_path,
-        target_size=(224, 224),
-        batch_size=32,
+        target_size=(
+            variables.get_image_size_x(),
+            variables.get_image_size_y()
+        ),
+        batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )
 
     print("validation set:")
     print(validation_set.class_indices)
 
-    loader.set_y_training_set(training_set.classes)
-    loader.set_y_test_set(test_set.classes)
-    loader.set_y_validation_set(validation_set.classes)
+    loader.set_y_training_set(
+        training_set.classes
+    )
+
+    loader.set_y_test_set(
+        test_set.classes
+    )
+
+    loader.set_y_validation_set(
+        validation_set.classes
+    )
 
     execute.run()
-
-
 
 
 if __name__ == '__main__':
