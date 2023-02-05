@@ -3,22 +3,28 @@ import wandb
 from keras.preprocessing.image \
     import ImageDataGenerator
 
+from tensorflow.python.eager.context \
+    import set_log_device_placement
+
 import loader
 import execute
 
-from src.ai.configuration \
+from configuration \
     import variables
+
+set_log_device_placement(True)
+
+root = '/mnt/d/dataset/Filtered'
+variables.set_dataset(root)
 
 wandb.init(
     project="test-project",
     entity="io-jaegers"
 )
 
-root = '/mnt/d/dataset/Filtered'
-
-test_path = root + r'/Test'
-train_path = root + r'/Training'
-validation_path = root + r'/Validation'
+test_path = variables.get_dataset() + r'/Test'
+train_path = variables.get_dataset() + r'/Training'
+validation_path = variables.get_dataset() + r'/Validation'
 
 
 def main() -> None:
@@ -54,6 +60,7 @@ def main() -> None:
             variables.get_image_size_x(),
             variables.get_image_size_y()
         ),
+        seed=variables.next_seed(),
         batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )
@@ -70,6 +77,7 @@ def main() -> None:
             variables.get_image_size_x(),
             variables.get_image_size_y()
         ),
+        seed=variables.next_seed(),
         batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )
@@ -87,6 +95,7 @@ def main() -> None:
             variables.get_image_size_x(),
             variables.get_image_size_y()
         ),
+        seed=variables.next_seed(),
         batch_size=variables.get_batch_size(),
         class_mode="sparse"
     )

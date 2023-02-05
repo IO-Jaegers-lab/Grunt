@@ -5,13 +5,17 @@ from keras.layers \
     import \
     Flatten, \
     Dense
+from keras.losses import SparseCategoricalCrossentropy
 
 from tensorflow.python.keras.models \
-    import \
-    Model
+    import Model
+
+import datetime
+
+from configuration \
+    import variables
 
 import loader
-from src.ai.configuration import variables
 
 
 def run():
@@ -42,9 +46,13 @@ def run():
     )
 
     model.compile(
-        loss='sparse_categorical_crossentropy',
+        loss=SparseCategoricalCrossentropy(
+            from_logits=True
+        ),
         optimizer="adam",
-        metrics=['accuracy']
+        metrics=[
+            'accuracy'
+        ],
     )
 
     history = model.fit(
@@ -62,4 +70,7 @@ def run():
         shuffle=True
     )
 
+    print("==========================================================================================")
     vgg_model.summary()
+    print("Done ====================================================================================")
+
