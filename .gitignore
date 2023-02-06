@@ -1,6 +1,8 @@
 .idea/*
 .enviroment/*
 .venv/*
+.archive/*
+.default/*
 
 *.pyc
 

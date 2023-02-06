@@ -11,5 +11,5 @@ class Application:
     def garbage_collection(self):
         pass
 
-    def debug(self):
+    def tests(self):
         pass
