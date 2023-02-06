@@ -1,6 +1,9 @@
 .idea/*
 .enviroment/*
 .venv/*
+.archive/*
+.default/*
 
 *.pyc
 
+nohup.out
