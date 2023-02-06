@@ -1,10 +1,10 @@
-from io.jaegers.grunt.SystemState \
+from io.jaegers.Grunt.Application.SystemState \
     import SystemState
 
-from io.jaegers.grunt.Domain \
+from io.jaegers.Grunt.Application.Domain \
     import Domain
 
-from io.jaegers.grunt.Configuration \
+from io.jaegers.Grunt.Application.Configuration \
     import Configuration
 
 

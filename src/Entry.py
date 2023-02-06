@@ -1,4 +1,4 @@
-from io.jaegers.grunt.Application \
+from io.jaegers.Grunt.Application.Application \
     import Application
 
 
