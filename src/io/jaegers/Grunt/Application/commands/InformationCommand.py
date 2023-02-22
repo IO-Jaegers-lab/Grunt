@@ -1,4 +1,4 @@
-from io.jaegers.grunt.commands.Command \
+from io.jaegers.Grunt.Application.commands.Command \
     import Command
 
 
